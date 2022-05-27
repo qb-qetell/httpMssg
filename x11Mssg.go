@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strconv"
 	"time"
 )
 
@@ -60,5 +59,5 @@ type Mssg struct {
 				_e1600.Error ())
 			return false, errors.New (_e1700), nil
 		}
-		return true, nil, rspn_estb (strconv.Itoa (_e1200.StatusCode), _e1500)
+		return true, nil, rspn_estb (_e1200, _e1500)
 	}
