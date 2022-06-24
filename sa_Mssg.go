@@ -38,7 +38,7 @@ type Mssg struct {
 		}
 		i.Mssg.Header.Add (name, vlll)
 	}
-	func (i *Mssg) Send (waitTime time.Duration) (bool, error, *Rspn) {
+	func (i *Mssg) Send (waitTime time.Duration) (error, *Rspn) {
 		_e1100 := &http.Client {
 			Transport: &http.Transport {
 				ResponseHeaderTimeout: waitTime,
@@ -51,13 +51,13 @@ type Mssg struct {
 		_e1200, _e1300 := _e1100.Do (i.Mssg)
 		if _e1300 != nil {
 			_e1400 := fmt.Sprintf ("Could not send message. [%s]", _e1300.Error ())
-			return false, errors.New (_e1400), nil
+			return errors.New (_e1400), nil
 		}
 		_e1500, _e1600 := io.ReadAll (_e1200.Body)
 		if _e1600 != nil {
 			_e1700 := fmt.Sprintf ("Could not read possible response. [%s]",
 				_e1600.Error ())
-			return false, errors.New (_e1700), nil
+			return errors.New (_e1700), nil
 		}
-		return true, nil, rspn_estb (_e1200, _e1500)
+		return nil, rspn_estb (_e1200, _e1500)
 	}
