@@ -1,3 +1,3 @@
-module github.com/qetell/httpMssg
+module github.com/qb-qetell/httpMssg
 
 go 1.18
