@@ -54,6 +54,9 @@ type Mssg struct {
 			return errors.New (_e1400), nil
 		}
 		_e1500, _e1600 := io.ReadAll (_e1200.Body)
+		if _e1200.Body != nil {
+			_e1200.Body.Close ()
+		}
 		if _e1600 != nil {
 			_e1700 := fmt.Sprintf ("Could not read possible response. [%s]",
 				_e1600.Error ())
